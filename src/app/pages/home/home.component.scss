@@ -1,0 +1,27 @@
+.cardImg {
+  width: 100%;
+  height: auto;
+  min-height: 320px;
+  max-height: 320px;
+  border-radius: 10%;
+}
+
+.categoryBackground {
+  background-color: #00618d;
+}
+
+@media only screen and (max-width: 1100px) {
+  .cardImg {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+  }
+}
+
+@media only screen and (max-width: 690px) {
+  .cardImg {
+    width: 100%;
+    height: auto;
+    border-radius: 10%;
+  }
+}

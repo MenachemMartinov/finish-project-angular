@@ -1,0 +1,89 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-1">
+  <a class="navbar-brand" href="/">אינדקס העסקים בביתר עילית</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExample05"
+    aria-controls="navbarsExample05"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarsExample05">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/"
+          >דף הבית <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle active"
+          href="#"
+          id="dropdown01"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >קטגוריות עסקים</a
+        >
+        <div class="dropdown-menu" aria-labelledby="dropdown01">
+          <div *ngIf="categories">
+            <div *ngFor="let item of categories">
+              <a
+                class="dropdown-item"
+                [routerLink]="['/category', item.categoryName]"
+                >{{ item.categoryName }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle active"
+          href="#"
+          id="dropdown02"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >משתמשים</a
+        >
+        <div class="dropdown-menu" aria-labelledby="dropdown02">
+          <div *ngIf="token?._id; else notLogged">
+            <a class="dropdown-item" [routerLink]="['/logout']">התנתקות</a>
+          </div>
+          <ng-template #notLogged>
+            <a class="dropdown-item" [routerLink]="['/login']">התחברות</a>
+            <a class="dropdown-item" [routerLink]="['/sign-up-business']"
+              >הרשמה לבעלי עסקים</a
+            >
+          </ng-template>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-md-0">
+      <input
+        class="form-control search-me"
+        type="search"
+        name="searchCard"
+        [(ngModel)]="userSearchCard"
+        (ngModelChange)="searchCard($event)"
+        minlength="1"
+        placeholder="חיפוש עסק"
+      />
+    </form>
+    <div *ngIf="userSearchCardResult?.length > 0; else noSearch">
+      <div class="dropdown-menu show bg-3" aria-labelledby="dropdown03">
+        <div *ngFor="let card of userSearchCardResult">
+          <a class="dropdown-item" [routerLink]="['/card', card?._id]" (click)="onClickResult()">{{
+            card?.bizName
+          }}</a>
+        </div>
+      </div>
+    </div>
+    <ng-template #noSearch></ng-template>
+  </div>
+</nav>

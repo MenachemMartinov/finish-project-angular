@@ -1,0 +1,171 @@
+<div class="row justify-content-center mt-5 p-4">
+  <form
+    class="text-center br-me form-width bg-3 p-4"
+    #newCard="ngForm"
+    (ngSubmit)="onSubmit(newCard)"
+    novalidate="novalidate"
+  >
+    <h1 class="h3 mb-3 font-weight-normal">יצירת כרטיס חדש</h1>
+
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>שם העסק
+      </label>
+      <input
+        type="text"
+        #bizName="ngModel"
+        name="bizName"
+        [(ngModel)]="card.bizName"
+        id="inputbizName"
+        class="form-control "
+        placeholder="שם העסק"
+        required
+        autocomplete="bizName"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': bizName.touched && bizName.valid,
+          'is-invalid': bizName.touched && bizName.invalid
+        }"
+      />
+      <div *ngIf="bizName.errors?.required" class="invalid-feedback">
+        שדה שם העסק הינו שדה חובה
+      </div>
+      <div *ngIf="bizName.errors?.minlength" class="invalid-feedback">
+        שדה שם קטגוריה צריך להיות באורך
+        {{ bizName.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>קטגורית העסק
+      </label>
+      <div *ngIf="categories; else noCategories">
+        <select
+          name="bizCategory"
+          id="bizCategory"
+          class="form-control text-center"
+          #bizCategory="ngModel"
+          [(ngModel)]="card.bizCategory"
+          minlength="2"
+          defaultValue=""
+          required
+          [ngClass]="{
+            'is-valid': bizCategory.touched && bizCategory.valid,
+            'is-invalid': bizCategory.touched && bizCategory.invalid
+          }"
+        >
+          <option value="" disabled>בחר קטגוריה</option>
+          <option
+            *ngFor="let category of categories"
+            [value]="category.categoryName"
+          >
+            {{ category.categoryName }}
+          </option>
+        </select>
+        <div *ngIf="bizCategory.errors?.required" class="invalid-feedback">
+          שדה תמונה קטגוריה הינו שדה חובה
+        </div>
+        <div *ngIf="bizCategory.errors?.minlength" class="invalid-feedback">
+          שדה תמונה קטגוריה צריך להיות באורך
+          {{ bizCategory.errors?.minlength.requiredLength }} לפחות
+        </div>
+      </div>
+      <ng-template #noCategories>
+        <p class="form-control text-center">אין קטגוריות</p>
+      </ng-template>
+    </div>
+
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>כתובת העסק
+      </label>
+      <input
+        type="text"
+        #bizAddress="ngModel"
+        name="bizAddress"
+        [(ngModel)]="card.bizAddress"
+        id="inputbizAddress"
+        class="form-control "
+        placeholder="כתובת העסק"
+        required
+        autocomplete="bizAddress"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': bizAddress.touched && bizAddress.valid,
+          'is-invalid': bizAddress.touched && bizAddress.invalid
+        }"
+      />
+      <div *ngIf="bizAddress.errors?.required" class="invalid-feedback">
+        שדה כתובת העסק הינו שדה חובה
+      </div>
+      <div *ngIf="bizAddress.errors?.minlength" class="invalid-feedback">
+        שדה כתובת העסק צריך להיות באורך
+        {{ bizAddress.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>מס' טלפון של העסק
+      </label>
+      <input
+        type="text"
+        #bizPhone="ngModel"
+        name="bizPhone"
+        [(ngModel)]="card.bizPhone"
+        id="inputbizPhone"
+        class="form-control "
+        placeholder="מס' טלפון של העסק"
+        required
+        autocomplete="bizPhone"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': bizPhone.touched && bizPhone.valid,
+          'is-invalid': bizPhone.touched && bizPhone.invalid
+        }"
+      />
+      <div *ngIf="bizPhone.errors?.required" class="invalid-feedback">
+        שדה טלפון הינו שדה חובה
+      </div>
+      <div *ngIf="bizPhone.errors?.minlength" class="invalid-feedback">
+        שדה טלפון צריך להיות באורך
+        {{ bizPhone.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>מידע נוסף על העסק ועוד...
+      </label>
+      <textarea
+        #bizDescription="ngModel"
+        name="bizDescription"
+        [(ngModel)]="card.bizDescription"
+        id="inputbizDescription"
+        class="form-control "
+        placeholder="מידע נוסף על העסק ועוד..."
+        required
+        autocomplete="bizDescription"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': bizDescription.touched && bizDescription.valid,
+          'is-invalid': bizDescription.touched && bizDescription.invalid
+        }"
+        rows="3"
+      ></textarea>
+
+      <div *ngIf="bizDescription.errors?.required" class="invalid-feedback">
+        שדה מידע נוסף הינו שדה חובה
+      </div>
+      <div *ngIf="bizDescription.errors?.minlength" class="invalid-feedback">
+        שדה מידע נוסף צריך להיות באורך
+        {{ bizDescription.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+
+    <button class="btn btn-lg bg-1 btn-block mt-3" type="submit">
+      יצירת כרטיס חדש
+    </button>
+  </form>
+</div>

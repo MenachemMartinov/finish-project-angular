@@ -1,0 +1,62 @@
+<div
+  *ngIf="card; else noCard"
+  class="row justify-content-center card-border pt-5 mt-5"
+>
+  <div *ngIf="card.bizImageDefault[0]; else noImg">
+    <img
+      [src]="card.bizImageDefault[0]"
+      [alt]="card.bizName"
+      class="col-10 col-md-5"
+    />
+  </div>
+  <div *ngIf="card.bizImageWeek[0]; else noImg">
+    <img
+      [src]="card.bizImageWeek[0]"
+      [alt]="card.bizName"
+      class="col-10 col-md-5"
+    />
+  </div>
+  <ng-template #noImg>
+    <p>אין תמונה </p>
+  </ng-template>
+  <div class="col-10">
+    <div class="row justify-content-center">
+      <h4 class="col-12 text-center">{{ card.bizName }}</h4>
+      <div class="col-12 col-md-5 col-lg-5 col-xl-4">
+        <a
+          [href]="['tel:', card.bizPhone]"
+          class="btn btn-success btn-block mt-2"
+          >{{ card.bizPhone }}</a
+        >
+      </div>
+      <div class="col-12 col-md-5 col-lg-5 col-xl-4">
+        <a
+          [routerLink]="['/category', card.bizCategory]"
+          class="btn btn-dark btn-block mt-2"
+          >{{ card.bizCategory }}</a
+        >
+      </div>
+      <div class="col-12 mt-5 border-card">
+        <p class="text-center">
+          {{ card.bizDescription }}
+        </p>
+      </div>
+    </div>
+    <div *ngIf="isTheSameUser" class="row justify-content-center mt-5">
+      <a
+        [routerLink]="['/edit-card', card._id]"
+        class="btn btn-md bg-1 col-5 col-md-4 m-2"
+        >עריכת כרטיס</a
+      >
+      <a
+        [routerLink]="['/delete-card', card._id]"
+        class="btn btn-md btn-danger col-5 col-md-4 m-2"
+        >מחיקת כרטיס</a
+      >
+    </div>
+  </div>
+</div>
+
+<ng-template #noCard>
+  <h3 class="container text-center mt-5">סבלנות העמוד נטען</h3>
+</ng-template>

@@ -1,0 +1,39 @@
+<div class="row card-border">
+  <img
+    [src]="card.bizImageDefault[0]"
+    [alt]="card.bizName"
+    class="col-12 col-md-5 col-lg-5"
+  />
+  <div class="col-12 col-md-7 col-lg-7">
+    <div class="row justify-content-center">
+      <h4 class="col-12 text-center">{{ card.bizName }}</h4>
+      <div class="col-5 col-md-6 col-lg-6 col-xl-4">
+        <a
+          [href]="['tel:', card.bizPhone]"
+          class="btn btn-success btn-block m-2"
+          >{{ card.bizPhone }}</a
+        >
+      </div>
+      <div class="col-5 col-md-6 col-lg-6 col-xl-4">
+        <a
+          [routerLink]="['/category', card.bizCategory]"
+          class="btn btn-dark btn-block m-2"
+          >{{ card.bizCategory }}</a
+        >
+      </div>
+      <div class="col-8">
+        <a [routerLink]="['/card', card._id]" class="btn btn-block bg-1 m-2"
+          >מידע נוסף</a
+        >
+      </div>
+    </div>
+    <div *ngIf="isTheSameUser" class="row justify-content-center">
+      <a [routerLink]="['/edit-card', card._id]" class="btn btn-md bg-1 col-3 m-2"
+        >עריכת כרטיס</a
+      >
+      <a [routerLink]="['/delete-card', card._id]" class="btn btn-md btn-danger col-3 m-2"
+        >מחיקת כרטיס</a
+      >
+    </div>
+  </div>
+</div>

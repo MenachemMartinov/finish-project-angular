@@ -1,0 +1,70 @@
+<div class="row justify-content-center mt-5 p-4">
+  <form
+    class="text-center br-me form-width bg-3 p-4"
+    #newCategory="ngForm"
+    (ngSubmit)="onSubmit(newCategory)"
+    novalidate="novalidate"
+  >
+    <h1 class="h3 mb-3 font-weight-normal">יצירת קטגוריה חדשה</h1>
+
+    <div>
+      <label for="inputcategoryName" class="mt-3"
+        ><span class="text-danger">*</span>שם הקטגוריה החדשה</label
+      >
+      <input
+        type="text"
+        #categoryName="ngModel"
+        name="categoryName"
+        [(ngModel)]="category.categoryName"
+        id="inputcategoryName"
+        class="form-control"
+        placeholder="שם הקטגוריה החדשה"
+        required
+        autocomplete="categoryName"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': categoryName.touched && categoryName.valid,
+          'is-invalid': categoryName.touched && categoryName.invalid
+        }"
+      />
+      <div *ngIf="categoryName.errors?.required" class="invalid-feedback">
+        שדה שם הקטגוריה החדשה הינו שדה חובה
+      </div>
+      <div *ngIf="categoryName.errors?.minlength" class="invalid-feedback">
+        שדה שם הקטגוריה החדשה צריך להיות באורך
+        {{ categoryName.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+    <div>
+      <label for="inputimage" class="mt-3"
+        ><span class="text-danger">*</span>תמונה קטגוריה
+      </label>
+      <input
+        type="text"
+        #image="ngModel"
+        name="image"
+        [(ngModel)]="category.image"
+        id="inputimage"
+        class="form-control"
+        placeholder="תמונה קטגוריה (קישור לאתר חיצוני)"
+        required
+        autocomplete="image"
+        minlength="3"
+        [ngClass]="{
+          'is-valid': image.touched && image.valid,
+          'is-invalid': image.touched && image.invalid
+        }"
+      />
+      <div *ngIf="image.errors?.required" class="invalid-feedback">
+        שדה תמונה קטגוריה הינו שדה חובה
+      </div>
+      <div *ngIf="image.errors?.minlength" class="invalid-feedback">
+        שדה תמונה קטגוריה צריך להיות באורך
+        {{ image.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">
+      יצירת קטגוריה חדשה
+    </button>
+  </form>
+</div>

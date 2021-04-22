@@ -1,0 +1,102 @@
+<div class="row justify-content-center mt-5 p-4">
+  <form
+    class="text-center form-width br-me bg-3 p-4"
+    #signUpBusiness="ngForm"
+    (ngSubmit)="onSubmit(signUpBusiness)"
+    novalidate="novalidate"
+  >
+    <h1 class="h3 mb-3 font-weight-normal">הרשמה לבעלי עסקים</h1>
+    <label for="fullName" class="mt-3"
+      ><span class="text-danger">*</span> שם מלא</label
+    >
+    <div>
+      <input
+        type="text"
+        #name="ngModel"
+        name="name"
+        [(ngModel)]="user.name"
+        id="fullName"
+        class="form-control"
+        placeholder="שם מלא (לא שם העסק)"
+        required
+        autocomplete="full-name"
+        minlength="2"
+        [ngClass]="{
+          'is-valid': name.touched && name.valid,
+          'is-invalid': name.touched && name.invalid
+        }"
+      />
+
+      <div *ngIf="name.errors?.required" class="invalid-feedback">
+        שם מלא הינו שדה חובה
+      </div>
+      <div *ngIf="name.errors?.minlength" class="invalid-feedback">
+        שם מלא צריך להיות באורך
+        {{ name.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+    <div>
+      <label for="inputEmail" class="mt-3"
+        ><span class="text-danger">*</span>כתובת אימייל</label
+      >
+      <input
+        type="email"
+        #email="ngModel"
+        name="email"
+        [(ngModel)]="user.email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="אימייל"
+        required
+        autocomplete="email"
+        pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+        [ngClass]="{
+          'is-valid': email.touched && email.valid,
+          'is-invalid': email.touched && email.invalid
+        }"
+      />
+
+      <div *ngIf="email.errors?.required" class="invalid-feedback">
+        אימייל הינו שדה חובה
+      </div>
+      <div *ngIf="email.errors?.pattern" class="invalid-feedback">
+        אנא הכנס אימייל תקין
+      </div>
+    </div>
+    <div>
+      <label for="inputPassword" class="mt-3"
+        ><span class="text-danger">*</span>סיסמה</label
+      >
+      <input
+        type="password"
+        #password="ngModel"
+        name="password"
+        [(ngModel)]="user.password"
+        id="inputPassword"
+        class="form-control"
+        placeholder="סיסמה"
+        required
+        autocomplete="password"
+        minlength="6"
+        [ngClass]="{
+          'is-valid': password.touched && password.valid,
+          'is-invalid': password.touched && password.invalid
+        }"
+      />
+      <div *ngIf="password.errors?.required" class="invalid-feedback">
+        סיסמה הינו שדה חובה
+      </div>
+      <div *ngIf="password.errors?.minlength" class="invalid-feedback">
+        שדה סיסמה צריך להיות באורך
+        {{ password.errors?.minlength.requiredLength }} לפחות
+      </div>
+    </div>
+    <div>
+      <input type="hidden" name="business" [(ngModel)]="user.business" />
+    </div>
+    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">
+      הירשם
+    </button>
+
+  </form>
+</div>

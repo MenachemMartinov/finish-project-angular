@@ -1,0 +1,28 @@
+<div class="container-fuild mt-4">
+  <div *ngIf="categories; else loading">
+    <div class="row">
+      <div *ngFor="let item of categories" class="col-12 col-md-6 col-lg-6 col-xl-4">
+        <div class="container mt-3">
+          <div class="row justify-content-center">
+            <img
+              [src]="item.image"
+              [alt]="item.categoryName"
+              class="col-12 card-img-top cardImg"
+            />
+            <div class="col-12 mt-2">
+              <a
+                [routerLink]="['/category', item.categoryName]"
+                class="btn btn-dark btn-block btn-lg bg-2"
+                >{{ item.categoryName }}</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <h3>loading</h3>
+  </ng-template>
+</div>

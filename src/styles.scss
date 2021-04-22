@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.p-tb-5 {
+  padding-top: 5% !important;
+  padding-bottom: 5% !important;
+}
+.p-tb-10 {
+  padding-top: 10% !important;
+  padding-bottom: 10% !important;
+}
+.my-container {
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+.form-width {
+  width: 55%;
+}
+
+@media only screen and (max-width: 768px) {
+  .p-tb-10 {
+    padding-top: 25% !important;
+    padding-bottom: 20% !important;
+  }
+
+  .my-container {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+  .form-width {
+    width: 85%;
+  }
+  .search-me{
+    width: 100%;
+  }
+}
+.bg-1 {
+  background-color: #00618d !important;
+  color: #fff !important;
+}
+.bg-2 {
+  background-color: #767679 !important;
+  color: #fff !important;
+}
+.bg-3 {
+  background-color: #fff !important;
+  color: #000 !important;
+}
+.p-c {
+  align-items: center;
+}
+
+#inputEmail {
+  direction: ltr;
+}
+
+.br-me {
+  border: #00618d 3px solid;
+  border-radius: 25px;
+}
+
