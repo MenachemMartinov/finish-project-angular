@@ -20,7 +20,6 @@ export class NewCategoryComponent implements OnInit {
   ) {}
 
   onSubmit({ valid, value }: NgForm) {
-    console.log(value);
 
     this.categoryService.newCategory(valid, value).subscribe((data) => {
       if (data?._id) {

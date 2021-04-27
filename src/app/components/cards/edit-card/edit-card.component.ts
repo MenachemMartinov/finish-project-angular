@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PopupComponent } from 'src/app/commen/popup/popup';
 import { Card } from 'src/app/interface/card';
 import { Category } from 'src/app/interface/category';
 import { CardService } from 'src/app/services/card.service';
@@ -26,21 +28,19 @@ export class EditCardComponent implements OnInit {
     private cardService: CardService,
     private categoriesService: CategoriesService,
     private router: Router,
-    activateRoute: ActivatedRoute
+    activateRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {
     activateRoute.params.subscribe((params) => (this.paramsId = params?.id));
   }
 
   onSubmit({ valid, value }: NgForm) {
-    console.log(value);
-
     this.cardService
       .updateCard(this.paramsId, valid, value)
       .subscribe((data) => {
         if (data?._id) {
-          alert(
-            `כרטיס של העסק "${data.bizName}" בקטגורית "${data.bizCategory}" עודכן בהצלחה`
-          );
+          let pup = this.dialog.open(PopupComponent);
+          pup.componentInstance.popupMessage = `כרטיס של העסק "${data.bizName}" בקטגורית "${data.bizCategory}" עודכן בהצלחה`;
           this.router.navigate(['']);
         }
       });

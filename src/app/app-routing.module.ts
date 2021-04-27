@@ -16,6 +16,7 @@ import { NewCategoryComponent } from './components/categories/new-category/new-c
 import { AuthGuard } from './guard/auth.guard';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PageNotFundComponent } from './pages/page-not-fund/page-not-fund.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -66,6 +67,11 @@ const routes: Routes = [
     component: EditCardImgComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'pageNotFund',
+    component: PageNotFundComponent,
+  },
+  { path: '**', redirectTo: 'pageNotFund', pathMatch: 'full' },
 ];
 
 @NgModule({

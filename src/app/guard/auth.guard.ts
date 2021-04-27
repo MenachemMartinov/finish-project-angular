@@ -40,7 +40,19 @@ export class AuthGuard implements CanActivate {
           state.url === '/sign-up-business' ||
           state.url === '/sign-up-manager'
         ) {
+          this.router.createUrlTree(['/pageNotFund']);
           result = false;
+        } else if (
+          state.url === '/new-category' ||
+          state.url === '/edit-category/:id' ||
+          state.url === '/delete-category/:id'
+        ) {
+          if (auth?.manager) {
+            result = true;
+          } else {
+            this.router.createUrlTree(['/pageNotFund']);
+            result = false;
+          }
         } else {
           result = true;
         }

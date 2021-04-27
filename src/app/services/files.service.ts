@@ -1,4 +1,9 @@
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import {
+  HttpHeaders,
+  HttpClient,
+  HttpRequest,
+  HttpEvent,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import url from '../commen/config';
@@ -11,26 +16,28 @@ export class FilesService {
   apiUrl = url.apiUrl;
   imgUrl = url.imgUrl;
   // this is default headers
-  headers = new HttpHeaders()
-    .set('auth-token', localStorage.getItem('token'))
-    .set(
-      'Content-Type',
-      'multipart/form-data; boundary=<calculated when request is sent>'
-    );
+  headers = new HttpHeaders().set('auth-token', localStorage.getItem('token'));
 
   constructor(private http: HttpClient) {}
 
-  NewImgUpload(file: File): Observable<any> {
+  NewImgUpload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
-    console.log(file);
-    formData.append('one-file', file, file.name);
-    console.log(JSON.stringify(formData));
 
-    return this.http.post<File>(`${this.apiUrl}/files/new-file`, formData, {
-      reportProgress: true,
-      responseType: 'json',
-      headers: this.headers,
-    });
+    formData.append('one-file-upload', 'check 1');
+    formData.append('one-file', file, file.name);
+
+    const req = new HttpRequest(
+      'POST',
+      `${this.apiUrl}/files/new-file`,
+      formData,
+      {
+        headers: this.headers,
+        reportProgress: true,
+        responseType: 'json',
+      }
+    );
+
+    return this.http.request(req);
   }
   getFiles(): Observable<any> {
     return this.http.get(`${this.imgUrl}/files`);

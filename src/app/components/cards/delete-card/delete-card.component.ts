@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PopupComponent } from 'src/app/commen/popup/popup';
 import { CardService } from 'src/app/services/card.service';
 
 @Component({
@@ -11,14 +13,16 @@ export class DeleteCardComponent implements OnInit {
   constructor(
     private cardService: CardService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe((params) =>
       this.cardService.deleteCard(params?.id).subscribe((res) => {
         if (res?._id) {
-          alert(`${res?.bizName} נמחק בהצלחה`);
+          let pup = this.dialog.open(PopupComponent);
+          pup.componentInstance.popupMessage = `${res?.bizName} נמחק בהצלחה`;
           this.router.navigate(['']);
         }
       })

@@ -1,27 +1,34 @@
 <div
   *ngIf="card; else noCard"
-  class="row justify-content-center card-border pt-5 mt-5"
+  class="row justify-content-center card-border pt-5 mt-5 br-me m-4"
 >
-  <div *ngIf="card.bizImageDefault[0]; else noImg">
+  <div
+    *ngIf="
+      card.bizImageDefault.length;
+      else noImg
+    "
+  >
     <img
-      [src]="card.bizImageDefault[0]"
+      [src]="card.bizImageDefault[card?.bizImageDefault.length - 1]"
       [alt]="card.bizName"
-      class="col-10 col-md-5"
+      class="col-10 col-md-5 card-img"
     />
   </div>
-  <div *ngIf="card.bizImageWeek[0]; else noImg">
+  <div
+    *ngIf="card.bizImageWeek.length; else noImg"
+  >
     <img
-      [src]="card.bizImageWeek[0]"
+      [src]="card.bizImageWeek[card?.bizImageWeek.length - 1]"
       [alt]="card.bizName"
-      class="col-10 col-md-5"
+      class="col-10 col-md-5 card-img"
     />
   </div>
-  <ng-template #noImg>
-    <p>אין תמונה </p>
+  <ng-template #noImg class="col-10 col-md-5 text-center">
+    <p>אין תמונה</p>
   </ng-template>
   <div class="col-10">
     <div class="row justify-content-center">
-      <h4 class="col-12 text-center">{{ card.bizName }}</h4>
+      <h3 class="col-12 text-center mt-3">{{ card.bizName }}</h3>
       <div class="col-12 col-md-5 col-lg-5 col-xl-4">
         <a
           [href]="['tel:', card.bizPhone]"

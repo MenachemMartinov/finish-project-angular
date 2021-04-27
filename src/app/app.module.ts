@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
@@ -25,7 +26,9 @@ import { SginUpbusinessComponent } from './components/auth/sgin-upbusiness/sgin-
 import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { CardDetailsComponent } from './components/cards/card-details/card-details.component';
-import { UploadFileComponent } from './components/files/upload-file/upload-file.component';
+import { PageNotFundComponent } from './pages/page-not-fund/page-not-fund.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopupComponent } from './commen/popup/popup';
 
 @NgModule({
   declarations: [
@@ -49,10 +52,20 @@ import { UploadFileComponent } from './components/files/upload-file/upload-file.
     HomeComponent,
     AboutComponent,
     CardDetailsComponent,
-    UploadFileComponent,
+    PageNotFundComponent,
+    PopupComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [PopupComponent],
 })
 export class AppModule {}

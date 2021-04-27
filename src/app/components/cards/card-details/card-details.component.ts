@@ -23,8 +23,11 @@ export class CardDetailsComponent implements OnInit {
     this.activateRoute.params.subscribe((params) =>
       this.cardService.getCard(params?.id).subscribe((card) => {
         this.card = card;
+        console.log(
+          this.card?.bizImageDefault[this.card?.bizImageDefault.length - 1]
+        );
         this.authService.getCurrentUser$.subscribe((user) => {
-          if (user._id === card.user_id) {
+          if (user?._id === card?.user_id) {
             this.isTheSameUser = true;
           }
         });

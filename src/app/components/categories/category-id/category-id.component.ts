@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/interface/card';
+import { User } from 'src/app/interface/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CardService } from 'src/app/services/card.service';
 
@@ -12,7 +13,7 @@ import { CardService } from 'src/app/services/card.service';
 export class CategoryIdComponent implements OnInit {
   cards: Card[] = null;
   paramsId: string = '';
-  user: any = null;
+  user: User = null;
   constructor(
     private activateRoute: ActivatedRoute,
     private cardService: CardService,
@@ -23,7 +24,6 @@ export class CategoryIdComponent implements OnInit {
     this.activateRoute.params.subscribe((params) => {
       this.paramsId = params?.id;
       this.authService.getCurrentUser$.subscribe((user) => (this.user = user));
-      console.log(this.user);
 
       this.cardService
         .getCards()

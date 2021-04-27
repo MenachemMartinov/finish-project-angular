@@ -1,0 +1,31 @@
+<div *ngIf="popupMessage">
+  <h1 mat-dialog-title class="text-center">{{popupMessage}}</h1>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close class="btn btn-block bg-2">סגור</button>
+  </div>
+</div>
+<div *ngIf="popupUpload">
+  <!-- <div
+    class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar"
+    attr.aria-valuenow="{{ popupUpload }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: popupUpload + '%' }"
+  >
+    {{ popupUpload }}%
+  </div> -->
+  <mat-card-content>
+    <h2 class="example-h2">התקדמות בהעלאה</h2>
+
+    <mat-progress-spinner
+      class="example-margin"
+      mode="determinate"
+      [value]="popupUpload"
+    >
+    </mat-progress-spinner>
+    <div mat-dialog-actions>
+      <button mat-button mat-dialog-close class="btn btn-block bg-2">סגור</button>
+    </div>
+  </mat-card-content>
+</div>

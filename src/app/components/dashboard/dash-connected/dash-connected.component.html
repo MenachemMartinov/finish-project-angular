@@ -1,23 +1,17 @@
 <div *ngIf="userLogged?._id">
-  <div *ngIf="userLogged?.manager">
-    <div class="bg-2">
-      <a routerLink="/" class="btn btn-dark btn-sm btn-black mr-2">
-        יצירת כרטיס חדש
-      </a>
-
-      <a routerLink="/" class="btn btn-dark btn-sm btn-black mr-2">
-        יצירת קטגוריה חדשה
-      </a>
-    </div>
-  </div>
-  <div *ngIf="userLogged?.business">
-    <div class="row bg-2">
+  <div class="bg-2 container-fuild">
+    <div *ngIf="userLogged?.manager" class="container justify-content-center">
       <a routerLink="/new-card" class="btn btn-dark btn-sm btn-black mr-2">
         יצירת כרטיס חדש
       </a>
 
       <a routerLink="/new-category" class="btn btn-dark btn-sm btn-black mr-2">
         יצירת קטגוריה חדשה
+      </a>
+    </div>
+    <div *ngIf="userLogged?.business" class="container justify-content-center">
+      <a routerLink="/new-card" class="btn btn-dark btn-sm btn-black mr-2">
+        יצירת כרטיס חדש
       </a>
     </div>
   </div>

@@ -41,7 +41,6 @@ export class NavBarComponent implements OnInit {
   }
 
   searchCard(e) {
-    console.log(e);
 
     if (e?.length > 0) {
       let search = e?.split(' ');
@@ -50,7 +49,6 @@ export class NavBarComponent implements OnInit {
           card.bizName.toLowerCase().includes(item.toLowerCase())
         )
       );
-      console.log(this.userSearchCardResult);
     } else {
       this.userSearchCardResult = null;
     }

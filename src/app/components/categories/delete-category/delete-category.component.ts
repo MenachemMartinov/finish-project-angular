@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PopupComponent } from 'src/app/commen/popup/popup';
 import { Category } from 'src/app/interface/category';
 import { CategoriesService } from 'src/app/services/categories.service';
 
@@ -12,7 +14,8 @@ export class DeleteCategoryComponent implements OnInit {
   constructor(
     private categoryService: CategoriesService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -24,7 +27,9 @@ export class DeleteCategoryComponent implements OnInit {
           )
           .subscribe((res) => {
             if (res?._id) {
-              alert(`${res?.categoryName} נמחק בהצלחה`);
+              let pup = this.dialog.open(PopupComponent);
+              pup.componentInstance.popupMessage = `${res?.categoryName} נמחק בהצלחה`;
+
               this.router.navigate(['']);
             }
           })

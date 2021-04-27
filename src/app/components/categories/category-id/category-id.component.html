@@ -1,9 +1,11 @@
-<a [routerLink]="['/edit-category', paramsId]" class="btn bg-1 m-2"
-  >עריכת קטגוריה</a
->
-<a [routerLink]="['/delete-category', paramsId]" class="btn btn-danger m-2"
-  >מחיקת קטגוריה</a
->
+<div *ngIf="user?.manager">
+  <a [routerLink]="['/edit-category', paramsId]" class="btn bg-1 m-2"
+    >עריכת קטגוריה</a
+  >
+  <a [routerLink]="['/delete-category', paramsId]" class="btn btn-danger m-2"
+    >מחיקת קטגוריה</a
+  >
+</div>
 
 <div *ngIf="cards; else loading">
   <div *ngFor="let card of cards" class="container">

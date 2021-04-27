@@ -14,10 +14,7 @@ export class CardIdComponent implements OnInit {
 
   }
   fn(){
-    console.log(this.card);
-    console.log(this.card?.user_id);
-    console.log(this.userId);
-    console.log(this.card?.user_id === this.userId);
+    
 
     if (this.card?.user_id === this.userId) {
       this.isTheSameUser = true;
