@@ -18,11 +18,31 @@ export class AuthService {
   // this is default headers
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
+  headersAndToken = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('auth-token', localStorage.getItem('token'));
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private location: Location
   ) {}
+
+  // user details
+  getUserDetails() {
+    return this.http.get(`${this.apiUrl}/users/user-details`, {
+      headers: this.headersAndToken,
+    });
+  }
+
+  // update user (!no password)
+  updateUser(valid, value) {
+    if (valid) {
+      return this.http.put<any>(`${this.apiUrl}/users`, JSON.stringify(value), {
+        headers: this.headersAndToken,
+      });
+    }
+  }
 
   // login for business & manager
   logIn(valid, value): Observable<any> {
@@ -49,6 +69,7 @@ export class AuthService {
   // check if the token is from my server
   private getCurrentUser(): User {
     const jwt = localStorage.getItem('token');
+
     if (!jwt) {
       return null;
     }

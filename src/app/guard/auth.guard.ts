@@ -25,7 +25,7 @@ export class AuthGuard implements CanActivate {
     | UrlTree {
     let result = false;
     this.authService.getCurrentUser$.subscribe((auth) => {
-      if (!auth) {
+      if (!auth || !auth?.business || !auth?.manager) {
         if (
           state.url === '/login' ||
           state.url === '/sign-up-business' ||

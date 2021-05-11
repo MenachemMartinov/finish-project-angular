@@ -29,6 +29,9 @@ import { CardDetailsComponent } from './components/cards/card-details/card-detai
 import { PageNotFundComponent } from './pages/page-not-fund/page-not-fund.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopupComponent } from './commen/popup/popup';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
+import { DeleteUserComponent } from './components/users/delete-user/delete-user.component';
+import { MyFavoritesComponent } from './components/favorites/my-favorites/my-favorites.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,9 @@ import { PopupComponent } from './commen/popup/popup';
     CardDetailsComponent,
     PageNotFundComponent,
     PopupComponent,
+    EditUserComponent,
+    DeleteUserComponent,
+    MyFavoritesComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,8 @@ import { CategoryIdComponent } from './components/categories/category-id/categor
 import { DeleteCategoryComponent } from './components/categories/delete-category/delete-category.component';
 import { EditCategoryComponent } from './components/categories/edit-category/edit-category.component';
 import { NewCategoryComponent } from './components/categories/new-category/new-category.component';
+import { MyFavoritesComponent } from './components/favorites/my-favorites/my-favorites.component';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { AuthGuard } from './guard/auth.guard';
 import { AboutComponent } from './pages/about/about.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -65,6 +67,16 @@ const routes: Routes = [
   {
     path: 'edit-card/:id/img',
     component: EditCardImgComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-user',
+    component: EditUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-favorites',
+    component: MyFavoritesComponent,
     canActivate: [AuthGuard],
   },
   {

@@ -1,18 +1,28 @@
 <div *ngIf="userLogged?._id">
   <div class="bg-2 container-fuild">
-    <div *ngIf="userLogged?.manager" class="container justify-content-center">
-      <a routerLink="/new-card" class="btn btn-dark btn-sm btn-black mr-2">
-        יצירת כרטיס חדש
-      </a>
-
-      <a routerLink="/new-category" class="btn btn-dark btn-sm btn-black mr-2">
-        יצירת קטגוריה חדשה
-      </a>
-    </div>
-    <div *ngIf="userLogged?.business" class="container justify-content-center">
-      <a routerLink="/new-card" class="btn btn-dark btn-sm btn-black mr-2">
-        יצירת כרטיס חדש
-      </a>
+    <div class="row justify-content-center">
+      <div *ngIf="userLogged?.manager" class="col-4">
+        <a
+          routerLink="/new-category"
+          class="btn btn-dark btn-sm btn-black mr-2"
+        >
+          יצירת קטגוריה חדשה
+        </a>
+      </div>
+      <div *ngIf="userLogged?.business || userLogged?.manager" class="col-7">
+        <a routerLink="/edit-user" class="btn btn-dark btn-sm btn-black mr-2"
+          >עריכת פרטי משתמש</a
+        >
+        <a routerLink="/new-card" class="btn btn-dark btn-sm btn-black mr-2">
+          יצירת כרטיס חדש
+        </a>
+        <a
+          routerLink="/my-favorites"
+          class="btn btn-dark btn-sm btn-black mr-2"
+        >
+          המעודפים שלי
+        </a>
+      </div>
     </div>
   </div>
 </div>

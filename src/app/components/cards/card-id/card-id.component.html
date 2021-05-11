@@ -39,5 +39,20 @@
         >מחיקת כרטיס</a
       >
     </div>
+    <div *ngIf="isLogged" class="row justify-content-center">
+      <div *ngIf="isFavorites; else noFavorite" >
+        <button
+          (click)="deleteFavorites()"
+          class="btn btn-md btn-danger"
+        >
+          הסרה ממעודפים
+        </button>
+      </div>
+      <ng-template #noFavorite>
+        <button (click)="addFavorites()" class="btn btn-md bg-1 col-3 mt-2">
+          הוספה למעודפים
+        </button>
+      </ng-template>
+    </div>
   </div>
 </div>

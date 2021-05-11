@@ -7,17 +7,13 @@ import { User } from 'src/app/interface/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-sgin-upbusiness',
-  templateUrl: './sgin-upbusiness.component.html',
-  styleUrls: ['./sgin-upbusiness.component.scss'],
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss'],
 })
-export class SginUpbusinessComponent implements OnInit {
-  user: User = {
-    name: '',
-    email: '',
-    password: '',
-    business: true,
-  };
+export class EditUserComponent implements OnInit {
+  user: User = null;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -25,13 +21,15 @@ export class SginUpbusinessComponent implements OnInit {
   ) {}
 
   onSubmit({ valid, value }: NgForm) {
-    this.authService.signUp(valid, value).subscribe((data) => {
+    this.authService.updateUser(valid, value).subscribe((data) => {
       if (data?._id) {
         let pup = this.dialog.open(PopupComponent);
-        pup.componentInstance.popupMessage = `${data.name} נרשמת בהצלחה`;
-        this.router.navigate(['/login']);
+        pup.componentInstance.popupMessage = `${data.name} הפרטים עדכנו בהצלחה`;
       }
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.getUserDetails().subscribe((data) => (this.user = data));
+    console.log(this.user);
+  }
 }
